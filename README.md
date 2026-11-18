@@ -20,6 +20,15 @@ QwenPaw 控制台里 default 智能体的编辑按钮是灰的，点不了。这
 
 整个目录拷进 QwenPaw 的插件目录（`<工作目录>/plugins/`），重启 app。不用配置，目录扫描发现即启用。
 
+也可以直接 clone：
+
+```bash
+cd <QwenPaw 工作目录>/plugins
+git clone https://github.com/hxx0611/default-agent-edit-unlock
+```
+
+或者从 Releases 下载 zip 解压进去，一样的。
+
 插件目录记得放持久化存储上。补丁改的是 venv 里的静态文件，容器重建、pip 升级都会把它抹掉——启动钩子每次启动会重打，插件本身还在就能自愈。
 
 ## 关闭 / 卸载
