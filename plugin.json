@@ -1,0 +1,29 @@
+{
+  "id": "default-agent-edit-unlock",
+  "name": "Default Agent Edit Unlock",
+  "version": "0.3.0",
+  "type": "hook",
+  "description": "Unlocks the two edit buttons (agent card + detail drawer) that the QwenPaw console hard-disables for the built-in default agent. Frontend-only: at startup, rewrites disabled:s.id===\"default\" to disabled:!1 in assets/AgentGallery-*.js, backs up the originals (.js/.gz/.br + index.html), and cache-busts patched chunks via content-hash query strings plus an injected import map, so a normal refresh picks up the change. Pin/drag/toggle/delete guards stay intact (they mirror backend guards). Idempotent and self-healing across pip upgrades and container rebuilds; uninstall restores every file byte-for-byte. Kill switch: QWENPAW_DEFAULT_EDIT_UNLOCK=0. Verified against qwenpaw 2.3.0; anchors on the common.edit i18n key and skips with a warning if a future bundle changes shape.",
+  "description_i18n": {
+    "zh-CN": "解锁 QwenPaw 控制台对内置默认智能体写死禁用的两处编辑按钮（卡片 + 详情抽屉）。纯前端补丁：启动时把 assets/AgentGallery-*.js 里的 disabled:s.id===\"default\" 改为 disabled:!1，备份原版（.js/.gz/.br + index.html），用内容哈希 query + import map 做缓存爆破，普通刷新即生效。置顶/拖拽/启停/删除的锁定原样保留。幂等自愈，pip 升级、容器重建后自动重打；卸载逐字节还原。关闭开关：QWENPAW_DEFAULT_EDIT_UNLOCK=0。在 qwenpaw 2.3.0 实测；锚定 common.edit i18n key，未来 bundle 变形时打 warning 并跳过。"
+  },
+  "author": "default",
+  "entry": {
+    "backend": "plugin.py"
+  },
+  "qwenpaw_version": {
+    "min": "2.2.0",
+    "max": "3.0.0"
+  },
+  "meta": {
+    "category": "system",
+    "features": [
+      "console-patch",
+      "default-agent-edit",
+      "idempotent",
+      "self-heal-after-upgrade",
+      "uninstall-restore",
+      "kill-switch"
+    ]
+  }
+}
